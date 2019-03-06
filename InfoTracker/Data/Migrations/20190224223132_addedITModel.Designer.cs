@@ -4,57 +4,22 @@ using InfoTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InfoTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190224223132_addedITModel")]
+    partial class addedITModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("InfoTracker.Models.IT", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Card");
-
-                    b.Property<string>("CardLast4digits");
-
-                    b.Property<bool>("Cash");
-
-                    b.Property<bool>("Check");
-
-                    b.Property<bool>("DOB");
-
-                    b.Property<string>("Date");
-
-                    b.Property<bool>("DriversLicense");
-
-                    b.Property<string>("Email");
-
-                    b.Property<bool>("HomeAdd");
-
-                    b.Property<string>("Name");
-
-                    b.Property<bool>("PassportDetails");
-
-                    b.Property<bool>("Phonenumber");
-
-                    b.Property<bool>("SSN");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ITs");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {

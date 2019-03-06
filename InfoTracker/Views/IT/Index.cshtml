@@ -1,0 +1,54 @@
+﻿@model List<InfoTracker.Models.IT>
+
+<h1>@ViewBag.Title</h1>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Email</th>
+        <th>Phone No.</th>
+        <th>Home Add.</th>
+        <th>Date of Birth</th>
+        <th>Passport Number</th>
+        <th>DriversLicense</th>
+        <th>SSN</th>
+        <th>Credit Card</th>
+        <th>Last 4 Digits</th>
+        <th>Check</th>
+        <th>Cash</th>
+      
+
+        <td></td>
+    </tr>
+    @foreach (var name in Model)
+    {
+    <tr>
+        <td>@name.Name</td>
+        <td>@name.Date</td>
+        <td>@name.Email</td>
+        <td>@name.Phonenumber</td>
+        <td>@name.HomeAdd</td>
+        <td>@name.DOB</td>
+        <td>@name.PassportDetails</td>
+        <td>@name.DriversLicense</td>
+        <td>@name.SSN</td>
+        <td>@name.Card</td>
+        <td>@name.CardLast4digits</td>
+        <td>@name.Check</td>
+        <td>@name.Cash</td>
+        <td><a asp-controller="IT" asp-action="Edit" asp-route-id="@name.ID">edit</a></td>
+
+
+    </tr>
+    }
+
+    </table>
+
+
+@if (Model.Count == 0)
+{
+    <p>No Information yet!</p>
+}
+
+
+<p><a asp-controller="IT" asp-action="Add">Add Information </a></p>
