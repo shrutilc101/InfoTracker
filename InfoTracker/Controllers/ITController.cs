@@ -69,7 +69,70 @@ namespace InfoTracker.Controllers
                 // Redirect to the Get Form pass back the AddItVM object that they filled.
                 return Redirect("/IT");
         }
+        public IActionResult Remove()
+        {
+            ViewBag.title = "Remove";
+            ViewBag.Its = context.ITs.ToList();
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult Remove(int[] ITIds)
+        {
+            foreach (int itId in ITIds)
+            {
+                IT theIT = context.ITs.Single(c => c.ID == itId);
+                context.ITs.Remove(theIT);
+            }
+
+            context.SaveChanges();
+
+            return Redirect("/");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            IT theIT = context.ITs.Single(c => c.ID == id);
+            EditITViewModel editITViewModel = new EditITViewModel(theIT);
+            return View(editITViewModel);
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditITViewModel editITViewModel)
+        {
+            if (ModelState.IsValid)
+            { 
+
+                IT theIT = context.ITs.Single(c => c.ID == editITViewModel.ID);
+
+
+                theIT.Name = editITViewModel.Name;
+                theIT.Date = editITViewModel.Date;
+                theIT.Email = editITViewModel.Email;
+                theIT.Phonenumber = editITViewModel.Phonenumber;
+                theIT.HomeAdd = editITViewModel.HomeAdd;
+                theIT.DOB = editITViewModel.DOB;
+                theIT.PassportDetails = editITViewModel.PassportDetails;
+                theIT.DriversLicense = editITViewModel.DriversLicense;
+                theIT.SSN = editITViewModel.SSN;
+                theIT.Card = editITViewModel.Card;
+                theIT.CardLast4digits = editITViewModel.CardLast4digits;
+                theIT.Check = editITViewModel.Check;
+                theIT.Cash = editITViewModel.Cash;
+                
+
+                context.ITs.Update(theIT);
+                context.SaveChanges();
+                return Redirect("/IT");
+
+            }
+            else
+            {
+                return View(editITViewModel);
+            }
+
+        }
 
     }
 }

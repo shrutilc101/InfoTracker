@@ -28,7 +28,7 @@ namespace InfoTracker.Models
         public bool Check { get; set; }
         public bool Cash { get; set; }
 
-        public string OwnerID { get; set; }
+        
 
     }
 }
